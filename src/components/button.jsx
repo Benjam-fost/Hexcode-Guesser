@@ -1,10 +1,8 @@
 import { useState } from "react"
 
-export default function Button(setter){
-    let hexCode;
+export default function Button({ hexcode, onClick}){
 
     return(
-        <>
-        </>
+        <button>{hexcode}</button>
     )
 }
