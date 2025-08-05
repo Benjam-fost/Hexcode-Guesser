@@ -15,27 +15,20 @@ function App() {
     return Math.floor(Math.random() * hexCodes.length)
   }
 
-  function getChoices(){
-    // Remove the correct answer
-    let incorrectCodes = hexCodes.map((_, index) => index)
-      .filter(index => index !== answerIndex)
-
-    // Shuffles incorrect codes
-    for(let i = incorrectCodes.length - 1; i > 0; i--){
-      const j = Math.floor(Math.random() * incorrectCodes.length);
-      [incorrectCodes[i], incorrectCodes[j]] = [incorrectCodes[j], incorrectCodes[i]];
-    }
-    // Takes two shuffled codes
-    incorrectCodes = incorrectCodes.slice(0,2).map(i => hexCodes[i])
-    // Shuffles them into the resulting choices array
-    return [hexCodes[answerIndex], ...incorrectCodes]
-      .sort(() => Math.random() - 0.5)
-  }
-
   useEffect(() => {
-    setAnswerIndex(randomIndex());
-    setChoices(getChoices());
-  }, [])
+    const index = randomIndex();
+    const incorrectIndicies = hexCodes
+    .map((_, i) => i)
+    .filter(i => i !== index)
+    .sort(() => Math.random() -0.5)
+    .slice(0,2);
+    
+    const codes = [hexCodes[index], ...incorrectIndicies.map(i => hexCodes[i])]
+      .sort(() => Math.random() -0.5);
+    
+    setAnswerIndex(index);
+    setChoices(codes);
+  }, [roundEnded])
 
   return (
     <main className={darkMode ? "dark" : ""}>
