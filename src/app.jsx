@@ -4,20 +4,18 @@ import Rectangle  from './components/rectangle'
 import Button from './components/button'
 
 function App() {
-  const [ongoingRound, setOngoingRound] = useState(true);
   const [correct, setCorrect] = useState(null);
-  const hexCodes = ["#000000", "#A10101", "#1bfd07ff", "#006effff", "#ff00d4ff"];
+  const [darkMode, setDarkMode] = useState(false);
+  const hexCodes = ["#000000", "#ff0000ff", "#15ff00ff", "#006effff", "#ff00d4ff", "#00ffffff"];
 
   function randomColour(){
     const index = Math.floor(Math.random() * hexCodes.length);
-    const result = hexCodes[index];
-    console.log(`Index: ${index}`);
-    return result;
+    return hexCodes[index];
   }
 
   return (
     <main>
-      <h1>
+      <h1 className={"dark" ? darkMode : ""}>
         Hexcode Guesser
       </h1>
       <div>
