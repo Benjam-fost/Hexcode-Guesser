@@ -41,7 +41,7 @@ function App() {
       </div>
       <div>
         {choices.map((choice) => 
-          <Button key={choice} hexcode={choice} onClick={() => setInput(choice)} />
+          <Button key={choice} darkMode={darkMode} hexcode={choice} onClick={() => setInput(choice)} />
         )}
       </div>
     </main>

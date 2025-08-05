@@ -1,8 +1,8 @@
 import { useState } from "react"
 
-export default function Button({ hexcode, onClick}){
+export default function Button({ darkMode, hexcode, onClick}){
 
     return(
-        <button onClick={onClick}>{hexcode}</button>
+        <button className={darkMode ? "dark" : ""} onClick={onClick}>{hexcode}</button>
     )
 }
