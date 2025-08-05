@@ -4,25 +4,30 @@ import Rectangle  from './components/rectangle'
 import Button from './components/button'
 
 function App() {
-  const [correct, setCorrect] = useState(null);
+  const [correct, setCorrect] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const hexCodes = ["#000000", "#ff0000ff", "#15ff00ff", "#006effff", "#ff00d4ff", "#00ffffff"];
+  const [answer, setAnswer] = useState("");
 
-  function randomColour(){
-    const index = Math.floor(Math.random() * hexCodes.length);
-    return hexCodes[index];
+  function randomIndex(){
+    return Math.floor(Math.random() * hexCodes.length)
   }
 
+  useEffect(() => {
+    setAnswer(hexCodes[randomIndex()])
+  }, [correct])
+
   return (
-    <main>
-      <h1 className={"dark" ? darkMode : ""}>
+    <main className={darkMode ? "dark" : ""}>
+      <button onClick={() => setDarkMode(!darkMode)} className={darkMode ? "dark" : ""} id="modeButton">☀</button>
+      <h1 className={darkMode ? "dark" : ""}>
         Hexcode Guesser
       </h1>
       <div>
-        <Rectangle colour={randomColour()} />
+        <Rectangle colour={answer} />
       </div>
       <div>
-        <Button />
+        <Button hexCodes={hexCodes} correctIndex={answer}/>
         <Button />
         <Button />
       </div>
