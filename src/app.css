@@ -45,3 +45,28 @@ button.dark{
   color:black;
   background-color: antiquewhite;
 }
+
+#choice-div{
+  gap: 20px;
+  display: flex;
+  align-content: space-between;
+  padding: 10px 0px;
+}
+
+#counter-div{
+  position:absolute;
+  left:20px;
+  top:20px;
+  padding: 10px 15px;
+  width: auto;
+  max-width: 80px;
+  align-content: center;
+  text-align: center;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.445);
+}
+
+#counter-div > h3 {
+  padding: 0;
+  margin: 0;
+}

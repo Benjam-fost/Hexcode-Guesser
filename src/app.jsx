@@ -5,7 +5,7 @@ import Button from './components/button'
 
 function App() {
   const [roundEnded, setRoundEnded] = useState(false);
-  const [input, setInput] = useState(false);
+  const [numCorrect, setNumCorrect] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
   const hexCodes = ["#000000", "#ff0000ff", "#15ff00ff", "#006effff", "#ff00d4ff", "#00ffffff"];
   const [answerIndex, setAnswerIndex] = useState("");
@@ -15,7 +15,16 @@ function App() {
     return Math.floor(Math.random() * hexCodes.length)
   }
 
+  // Handles the game state for when a choice is selected
+  function handleSelect(choice){
+    if (choice === hexCodes[answerIndex]){
+      setNumCorrect(numCorrect + 1);
+    }
+    setRoundEnded(true)
+  }
+
   useEffect(() => {
+    setRoundEnded(false);
     const index = randomIndex();
     const incorrectIndicies = hexCodes
     .map((_, i) => i)
@@ -32,6 +41,9 @@ function App() {
 
   return (
     <main className={darkMode ? "dark" : ""}>
+      <div id="counter-div">
+        <h3>{numCorrect}</h3>
+      </div>
       <button onClick={() => setDarkMode(!darkMode)} className={darkMode ? "dark" : ""} id="modeButton">☀</button>
       <h1 className={darkMode ? "dark" : ""}>
         Hexcode Guesser
@@ -39,9 +51,9 @@ function App() {
       <div>
         <Rectangle colour={hexCodes[answerIndex]} />
       </div>
-      <div>
+      <div id="choice-div">
         {choices.map((choice) => 
-          <Button key={choice} darkMode={darkMode} hexcode={choice} onClick={() => setInput(choice)} />
+          <Button key={choice} darkMode={darkMode} hexcode={choice} onClick={() => handleSelect(choice)} />
         )}
       </div>
     </main>
