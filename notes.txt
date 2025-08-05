@@ -1,0 +1,5 @@
+Game hex code guesser
+
+3 buttons with hex codes to guess a colour within a shape displayed
+
+random colour in rectangle
